@@ -1,16 +1,22 @@
-# bizmatch
+# Business Match
 
-A new Flutter project.
+Flutter prototype for browsing business and employee profile cards. The Facebook, Google and LinkedIn buttons navigate to demo screens; they do not perform OAuth sign-in.
 
-## Getting Started
+## Run locally
 
-This project is a starting point for a Flutter application.
+Use Flutter with Dart 3.6 or newer (tested with Flutter 3.41.5 / Dart 3.11.3).
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+flutter pub get
+flutter run -d chrome
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Validate
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh
+flutter analyze
+flutter test
+flutter build web
+```
+
+The web target and navigation test are the maintained validation path. Android and iOS builds also require their platform SDKs and signing configuration.
