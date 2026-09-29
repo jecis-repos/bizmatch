@@ -35,9 +35,12 @@ class _EntrepreneurPageState extends State<EntrepreneurPage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   final myData = entrepreneurs[0];
 
-  void _launchURL(_url) async => await canLaunch(_url)
-      ? await launch(_url)
-      : throw 'Could not launch $_url';
+  Future<void> _launchURL(String url) async {
+    final uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -341,7 +344,7 @@ class CarouselCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (index == 0) {
-      return Container(
+      return SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
             top: 16.0,
@@ -351,7 +354,6 @@ class CarouselCard extends StatelessWidget {
           ),
           child: Container(
             width: MediaQuery.of(context).size.width * 0.7,
-            height: MediaQuery.of(context).size.height * 0.5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -370,7 +372,8 @@ class CarouselCard extends StatelessWidget {
                               BorderRadius.all(Radius.circular(100.0)),
                         ),
                       ),
-                      Padding(
+                      Expanded(
+                        child: Padding(
                         padding: EdgeInsets.only(
                             top: MediaQuery.of(context).size.width * 0.1),
                         child: Column(
@@ -396,8 +399,9 @@ class CarouselCard extends StatelessWidget {
                           ],
                         ),
                       ),
+                      ),
                     ]),
-                Row(
+                Column(
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(
@@ -559,7 +563,7 @@ class CarouselCard extends StatelessWidget {
         ),
       );
     }
-    return Container(
+    return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
           top: 16.0,
@@ -569,7 +573,6 @@ class CarouselCard extends StatelessWidget {
         ),
         child: Container(
           width: MediaQuery.of(context).size.width * 0.7,
-          height: MediaQuery.of(context).size.height * 0.5,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
